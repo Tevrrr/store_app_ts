@@ -1,0 +1,34 @@
+/** @format */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	@apply transition-all duration-300 ease-in-out;
+}
+
+.cartItem_btn{
+    @apply bg-cyan-700 hover:bg-cyan-800 flex items-center justify-center rounded-3xl text-2xl text-cyan-50 font-bold 
+}
+.auth_input{
+    @apply w-full mt-2 px-3 p-2 text-inherit bg-inherit border-2 border-cyan-900 rounded-xl text-xl;
+}
+
+.auth_btn{
+    @apply  uppercase bg-cyan-800 hover:scale-105 py-2 px-4 rounded-xl;
+}
+
+html::-webkit-scrollbar-track {
+	border-radius: 4px;
+}
+html::-webkit-scrollbar {
+	width: 6px;
+}
+html::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background: #f0f2f5;
+}
+html:hover::-webkit-scrollbar-thumb {
+	background: #6a7d9b;
+}
