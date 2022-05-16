@@ -1,6 +1,7 @@
 /** @format */
 
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 interface LoginProps {}
 
@@ -27,8 +28,7 @@ const Login: FC<LoginProps> = () => {
 				</div>
 				<button className='auth_btn text-2xl'> Login</button>
 				<div className='text-xl flex items-baseline gap-3 justify-between'>
-					Need an account?{' '}
-					<button className='auth_btn'>Sign up</button>
+					Need an account? <Link to='/signup' className='auth_btn'>Sign up</Link>
 				</div>
 			</div>
 		</div>

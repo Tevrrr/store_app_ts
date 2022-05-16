@@ -1,7 +1,7 @@
 /** @format */
 
 import { FC } from 'react';
-import Aside from '../components/Asise';
+import Aside from '../components/Aside';
 import Catalog from '../components/Catalog';
 
 interface MainProps {}
