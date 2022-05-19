@@ -1,7 +1,6 @@
 /** @format */
 
 export const productTags: string[] = [
-    'All',
 	'Meat',
 	'Milk products',
 	'Vegetables',

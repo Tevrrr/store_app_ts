@@ -10,7 +10,8 @@ interface AsideItemProps {
 
 const AsideItem: FC<AsideItemProps> = ({ value }) => {
 	const { tag } = useTypedSelector((state) => state.product);
-	const { setTag } = useActions();
+    const { featchProducts } = useActions();
+
 	return (
 		<button
 			className={
@@ -19,7 +20,7 @@ const AsideItem: FC<AsideItemProps> = ({ value }) => {
 					? 'bg-cyan-900 bg-opacity-20'
 					: 'hover:bg-cyan-900 hover:bg-opacity-20')
 			}
-        onClick={()=>{setTag(value)}}>
+        onClick={()=>{featchProducts(value);}}>
 			 {value}
 		</button>
 	);
