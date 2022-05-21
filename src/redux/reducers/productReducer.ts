@@ -50,9 +50,9 @@ const initialState: ProductState = {
 	// 		tag: 'Meat',
 	// 	},
 	// ],
+    loading: false,
 	products: [],
-	cart: [],
-	tag: 'Meat',
+	cart: []
 };
 
 export const productReducer = (
@@ -61,7 +61,13 @@ export const productReducer = (
 ): ProductState => {
 	switch (action.type) {
 		case ProductActionTypes.SET_PRODUCT:
-			return { ...state, ...action.payload };
+			return {
+				...state,
+				products: action.payload,
+				loading: false,
+			};
+		case ProductActionTypes.SET_LOADING:
+			return { ...state, loading: action.payload };
 		case ProductActionTypes.ADD_CART:
 			return {
 				...state,
@@ -75,10 +81,10 @@ export const productReducer = (
 		}
 		case ProductActionTypes.INCREMENT_CART: {
 			const cart = state.cart.map((item) => {
-                if (item.id === action.payload) {
-                    return { ...item, quantity: item.quantity+1 };
-                }
-                return item;
+				if (item.id === action.payload) {
+					return { ...item, quantity: item.quantity + 1 };
+				}
+				return item;
 			});
 			return { ...state, cart };
 		}

@@ -2,10 +2,18 @@
 
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+    } = useForm();
+    
 	return (
 		<div className=' w-full h-full flex justify-center items-start pt-10 '>
 			<div className=' max-w-sm w-full flex flex-col gap-5 bg-cyan-700 p-6 px-10 rounded-3xl text-cyan-50 '>
@@ -28,7 +36,10 @@ const Login: FC<LoginProps> = () => {
 				</div>
 				<button className='auth_btn text-2xl'> Login</button>
 				<div className='text-xl flex items-baseline gap-3 justify-between'>
-					Need an account? <Link to='/signup' className='auth_btn'>Sign up</Link>
+					Need an account?{' '}
+					<Link to='/signup' className='auth_btn'>
+						Sign up
+					</Link>
 				</div>
 			</div>
 		</div>

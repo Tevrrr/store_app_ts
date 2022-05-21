@@ -1,9 +1,9 @@
 /** @format */
 
 export interface ProductState {
+    loading: boolean;
 	products: Product[];
 	cart: ICartItem[];
-	tag: string;
 }
 
 export interface ICartItem {
@@ -21,6 +21,7 @@ export interface Product {
 }
 export enum ProductActionTypes {
 	SET_PRODUCT = 'SET_PRODUCT',
+	SET_LOADING = 'SET_LOADING',
 	ADD_CART = 'ADD_CART',
 	DEL_CART = 'DEL_CART',
 	INCREMENT_CART = 'INCREMENT_CART',
@@ -29,10 +30,11 @@ export enum ProductActionTypes {
 
 interface setProduct {
 	type: ProductActionTypes.SET_PRODUCT;
-	payload: {
-		products: Product[];
-		tag: string;
-	};
+	payload: Product[];
+}
+interface setLoading {
+	type: ProductActionTypes.SET_LOADING;
+	payload:  boolean;
 }
 interface itemCart {
 	type:
@@ -45,4 +47,4 @@ interface itemCart {
 
 
 
-export type ProductAction = setProduct | itemCart;
+export type ProductAction = setProduct | setLoading | itemCart;

@@ -6,10 +6,14 @@ import { supabase} from '../../supabase/supabaseClient'
 
 export const featchProducts = (tag: string) => {
     return async (dispatch: Dispatch<ProductAction>) => {
+        dispatch({
+			type: ProductActionTypes.SET_LOADING,
+			payload: true,
+		});
         const { data } = await supabase.from('product').select('*').eq('tag', tag);
         console.log(tag, ' - Загрузка - ', Date());
         
-		dispatch({ type: ProductActionTypes.SET_PRODUCT, payload: {products: data || [], tag} });
+		dispatch({ type: ProductActionTypes.SET_PRODUCT, payload: data || [] });
 	};
 };
 

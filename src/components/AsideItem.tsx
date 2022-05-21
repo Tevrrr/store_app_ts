@@ -2,26 +2,25 @@
 
 import { FC } from 'react';
 import { useTypedSelector } from '../common/hooks/useTypedSelector';
-import { useActions } from '../common/hooks/useActions';
 
 interface AsideItemProps {
 	value: string;
+	active: boolean;
+    onClick: () => void;
 }
 
-const AsideItem: FC<AsideItemProps> = ({ value }) => {
-	const { tag } = useTypedSelector((state) => state.product);
-    const { featchProducts } = useActions();
+const AsideItem: FC<AsideItemProps> = ({ value, active, onClick }) => {
 
 	return (
 		<button
 			className={
 				' font-semibold transition-all cursor-pointer p-2 dark:text-cyan-50  text-cyan-900 ' +
-				(tag === value
+				(active
 					? 'bg-cyan-900 bg-opacity-20'
 					: 'hover:bg-cyan-900 hover:bg-opacity-20')
 			}
-        onClick={()=>{featchProducts(value);}}>
-			 {value}
+			onClick={onClick}>
+			{value}
 		</button>
 	);
 };

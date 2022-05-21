@@ -2,20 +2,29 @@
 
 import { FC } from 'react';
 import Card from './Card';
-import { useTypedSelector} from '../common/hooks/useTypedSelector'
+import { useTypedSelector } from '../common/hooks/useTypedSelector';
+import Spinner from './Spineer';
 
 interface CatalogProps {}
 
 const Catalog: FC<CatalogProps> = () => {
-    const { products} = useTypedSelector(store => store.product)
+	const { product } = useTypedSelector((store) => store);
 	return (
-		<article className=' w-full flex flex-wrap justify-around items-start gap-2'>
-			{products.map((item) => (
-				<Card data={item} key={item.id} />
-			))}
-			<div className='w-[14rem]'></div>
-			<div className='w-[14rem]'></div>
-		</article>
+		<>
+			{product.loading ? (
+				<div className=' h-full text-cyan-700 dark:text-cyan-100'>
+					<Spinner />
+				</div>
+			) : (
+				<article className=' w-full flex flex-wrap justify-around items-start gap-2'>
+					{product.products.map((item) => (
+						<Card data={item} key={item.id} />
+					))}
+					<div className='w-[14rem]'></div>
+					<div className='w-[14rem]'></div>
+				</article>
+			)}
+		</>
 	);
 };
 

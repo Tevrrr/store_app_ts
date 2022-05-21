@@ -12,14 +12,6 @@ interface CartProps {}
 
 const Cart: FC<CartProps> = () => {
 	const product = useTypedSelector((state) => state.product);
-	const [cart, setCart] = useState<Product[]>([]);
-	useEffect(() => {
-        featchCart();
-    }, [product]);
-    const featchCart = async () => {
-        const { data } = await supabase.from('product').select('*').in('id', product.cart.map(item => item.id));
-        setCart(data || [])
-    }
 	return (
 		<div className='flex flex-col gap-4 pt-4'>
 			<div className='flex  pr-16 p-3 rounded-3xl text-cyan-50 text-xl font-medium dark:bg-cyan-800 bg-cyan-700'>
