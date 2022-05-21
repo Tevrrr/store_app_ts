@@ -1,14 +1,30 @@
-import {UserAction, UserActionTypes, UserState} from "../../common/types/user";
+/** @format */
+
+import {
+	UserAction,
+	UserActionTypes,
+	UserState,
+} from '../../common/types/user';
 
 const initialState: UserState = {
-    darkMode: false
-}
+    darkMode: false,
+    user: null
+};
 
-export const userReducer = (state = initialState, action: UserAction): UserState => {
-    switch (action.type) {
-        case UserActionTypes.TOGGLE_DARK_MODE:
-            return { darkMode: !state.darkMode };
-        default:
-            return state
-    }
-}
+export const userReducer = (
+	state = initialState,
+	action: UserAction
+): UserState => {
+	switch (action.type) {
+		case UserActionTypes.TOGGLE_DARK_MODE: {
+			localStorage.setItem('darkMode', JSON.stringify(!state.darkMode));
+			return { ...state, darkMode: !state.darkMode };
+		}
+        case UserActionTypes.SET_STORAGE_DARK_MODE:
+            const darkMode = localStorage.getItem('darkMode')
+            if (darkMode) return { ...state, darkMode: JSON.parse(darkMode) };
+			return { ...state, darkMode: false };
+		default:
+			return state;
+	}
+};

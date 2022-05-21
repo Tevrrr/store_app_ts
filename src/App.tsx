@@ -1,27 +1,25 @@
 /** @format */
 
-
 import Navbar from './components/Navbar';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import SignUp from './pages/SignUp';
-import { useTypedSelector} from './common/hooks/useTypedSelector'
+import { useTypedSelector } from './common/hooks/useTypedSelector';
 import { Route, Routes } from 'react-router-dom';
-import { useActions} from './common/hooks/useActions'
+import { useActions } from './common/hooks/useActions';
 import { useEffect } from 'react';
 
 function App() {
-    const { darkMode } = useTypedSelector(store => store.user)
-    const { featchProducts } = useActions()
-    
-    useEffect(() => {
-      featchProducts('Meat')
-    
+	const { darkMode } = useTypedSelector((store) => store.user);
+	const { featchProducts, setStorageDarkMode } = useActions();
 
-    }, [])
-    
-    return (
+	useEffect(() => {
+		featchProducts('Meat');
+		setStorageDarkMode()
+	}, []);
+
+	return (
 		<div className={darkMode ? 'dark' : ''}>
 			<div className='App bg-gray-100 dark:bg-gray-900 w-full flex justify-center'>
 				<div className=' w-full box-border max-w-5xl flex flex-col min-h-screen p-1'>

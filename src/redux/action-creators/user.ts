@@ -8,3 +8,9 @@ export const toggleDarkMode = () => {
 		dispatch({ type: UserActionTypes.TOGGLE_DARK_MODE });
 	};
 };
+
+export const setStorageDarkMode = () => {
+	return (dispatch: Dispatch<UserAction>) => {
+		dispatch({ type: UserActionTypes.SET_STORAGE_DARK_MODE });
+	};
+};
