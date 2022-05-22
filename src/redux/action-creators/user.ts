@@ -16,7 +16,7 @@ export const setStorageDarkMode = () => {
 	};
 };
 
-export const registerUser = (email: string, password: string) => {
+export const registerUser = (email: string, password: string, fullName:string) => {
 	return async () => {
 		try {
 			const { user, error } = await supabase.auth.signUp({
@@ -24,12 +24,23 @@ export const registerUser = (email: string, password: string) => {
 				password,
 			});
 			if (error) throw error;
+
 			if (!(user?.identities?.length !== 0))
 				console.log('The user with this email is already registered!');
-			else
+			else {
+				const { error } = await supabase.from('user').insert([
+					{
+						userUID: user?.id,
+						fullName,
+						email,
+					},
+				]);
+				if (error) throw error;
+
 				console.log(
 					'Account created successfully! An email has been sent to you to confirm it.'
 				);
+			}
 		} catch (e) {
 			console.log(e);
 		}
@@ -69,7 +80,6 @@ export const loginStorage = () => {
 export const login = (email: string, password: string, saving: boolean) => {
 	return async (dispatch: Dispatch<UserAction>) => {
 		try {
-
 			const { user, error } = await supabase.auth.signIn({
 				email,
 				password,
@@ -95,5 +105,13 @@ export const login = (email: string, password: string, saving: boolean) => {
 			if ((e.message = 'Invalid login credentials'))
 				console.log('Invalid login credentials');
 		}
+	};
+};
+
+export const exitUser = () => {
+	return async (dispatch: Dispatch<UserAction>) => {
+        dispatch({ type: UserActionTypes.EXIT_USER });
+        sessionStorage.removeItem('user');
+        localStorage.removeItem('user');
 	};
 };

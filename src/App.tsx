@@ -6,9 +6,10 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import SignUp from './pages/SignUp';
 import { useTypedSelector } from './common/hooks/useTypedSelector';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { useActions } from './common/hooks/useActions';
 import { useEffect } from 'react';
+import User from './pages/User';
 
 function App() {
 	const { darkMode, user } = useTypedSelector((store) => store.user);
@@ -18,7 +19,18 @@ function App() {
 		featchProducts('Meat');
         setStorageDarkMode();
         if (user===null) loginStorage();
-	}, []);
+    }, []);
+    
+    function RequireAuth({ children }: { children: JSX.Element }) {
+		let location = useLocation();
+
+		if (user === null) {
+			console.log('Available only for authorized users! ');
+			return <Navigate to='/login' state={{ from: location }} replace />;
+		}
+
+		return children;
+	}
 
 	return (
 		<div className={darkMode ? 'dark' : ''}>
@@ -30,6 +42,7 @@ function App() {
 						<Route path='cart' element={<Cart />} />
 						<Route path='login' element={<Login />} />
 						<Route path='signup' element={<SignUp />} />
+						<Route path='user' element={<RequireAuth><User /></RequireAuth>} />
 					</Routes>
 				</div>
 			</div>

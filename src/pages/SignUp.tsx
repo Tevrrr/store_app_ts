@@ -28,7 +28,7 @@ const SignUp: FC<SignUpProps> = () => {
 		<form
 			onSubmit={handleSubmit((data) => {
 				console.log(data);
-				registerUser(data.email, data.password);
+				registerUser(data.email, data.password, data.fullName);
 			})}
 			className=' w-full h-full flex justify-center items-start pt-3 '>
 			<div className=' max-w-sm w-full flex flex-col gap-5 bg-cyan-700 dark:bg-cyan-800 p-6 px-10 rounded-3xl text-cyan-50 '>

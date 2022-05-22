@@ -12,7 +12,7 @@ const Catalog: FC<CatalogProps> = () => {
 	return (
 		<>
 			{product.loading ? (
-				<div className=' h-full text-cyan-700 dark:text-cyan-100'>
+				<div className=' h-full'>
 					<Spinner />
 				</div>
 			) : (

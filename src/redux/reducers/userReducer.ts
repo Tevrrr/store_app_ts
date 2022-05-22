@@ -25,6 +25,9 @@ export const userReducer = (
 			if (darkMode) return { ...state, darkMode: JSON.parse(darkMode) };
 			return { ...state, darkMode: false };
 		}
+		case UserActionTypes.EXIT_USER: {
+			return { ...state, user: null };
+		}
 		case UserActionTypes.LOGIN_USER: {
 			return { ...state, user: action.payload };
 		}

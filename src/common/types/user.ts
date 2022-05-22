@@ -7,9 +7,13 @@ export enum UserActionTypes {
 	TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE',
 	SET_STORAGE_DARK_MODE = 'SET_STORAGE_DARK_MODE',
 	LOGIN_USER = 'LOGIN_USER',
+	EXIT_USER = 'EXIT_USER',
 }
 interface toggleDarkMode {
 	type: UserActionTypes.TOGGLE_DARK_MODE;
+}
+interface exitUser {
+	type: UserActionTypes.EXIT_USER;
 }
 interface setStorageDarkMode {
 	type: UserActionTypes.SET_STORAGE_DARK_MODE;
@@ -19,4 +23,4 @@ interface loginUser {
 	payload: User;
 }
 
-export type UserAction = toggleDarkMode | setStorageDarkMode | loginUser;
+export type UserAction = toggleDarkMode | setStorageDarkMode | loginUser | exitUser;

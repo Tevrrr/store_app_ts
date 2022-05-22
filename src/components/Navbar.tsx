@@ -9,6 +9,7 @@ import {
 	faRightFromBracket,
 	faMoneyBillWheat,
 	faCartShopping,
+	faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { useTypedSelector } from '../common/hooks/useTypedSelector';
 import { useActions } from '../common/hooks/useActions';
@@ -18,8 +19,8 @@ interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
 	const { user, darkMode } = useTypedSelector((state) => state.user);
-    const { toggleDarkMode } = useActions();
-    
+	const { toggleDarkMode } = useActions();
+
 	return (
 		<nav className=' h-full max-h-[4.5rem] shadow-lg overflow-hidden flex justify-between items-center py-2 px-4 bg-cyan-700  dark:bg-cyan-800 text-cyan-50 border-2 border-cyan-900 rounded-3xl text-3xl font-medium '>
 			<div className=' flex items-center'>
@@ -49,7 +50,9 @@ const Navbar: FC<NavbarProps> = () => {
 				<div className='hover:text-cyan-200 cursor-pointer p-2'>
 					{user ? (
 						<div className=' transition-all hover:text-red-200'>
-							<FontAwesomeIcon icon={faRightFromBracket} />
+							<Link to='/user'>
+								<FontAwesomeIcon icon={faUser} />
+							</Link>
 						</div>
 					) : (
 						<Link to='/login'>
