@@ -11,12 +11,13 @@ import { useActions } from './common/hooks/useActions';
 import { useEffect } from 'react';
 
 function App() {
-	const { darkMode } = useTypedSelector((store) => store.user);
-	const { featchProducts, setStorageDarkMode } = useActions();
+	const { darkMode, user } = useTypedSelector((store) => store.user);
+	const { featchProducts, setStorageDarkMode, loginStorage } = useActions();
 
 	useEffect(() => {
 		featchProducts('Meat');
-		setStorageDarkMode()
+        setStorageDarkMode();
+        if (user===null) loginStorage();
 	}, []);
 
 	return (

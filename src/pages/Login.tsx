@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { useActions } from '../common/hooks/useActions';
+
 interface LoginProps {}
 
 const Login: FC<LoginProps> = () => {
@@ -14,10 +16,13 @@ const Login: FC<LoginProps> = () => {
 		watch,
 		formState: { errors },
 	} = useForm({ defaultValues: { email: '', password: '', saving: '' } });
-
+	const { login } = useActions();
 	return (
 		<form
-			onSubmit={handleSubmit((data) => console.log(data))}
+			onSubmit={handleSubmit((data) => {
+				console.log(data);
+				login(data.email, data.password, data.saving === 'true');
+			})}
 			className=' w-full h-full flex justify-center items-start pt-10 '>
 			<div className=' max-w-sm w-full flex flex-col gap-5 bg-cyan-700 dark:bg-cyan-800 p-6 px-10 rounded-3xl text-cyan-50 '>
 				<h1 className='text-center text-4xl font-bold uppercase'>
@@ -46,7 +51,11 @@ const Login: FC<LoginProps> = () => {
 				</div>
 				<div className=' flex justify-start'>
 					<label className=' flex items-center gap-1 text-xl cursor-pointer p-2'>
-						<input type='checkbox' className=' hidden' {...register('saving')} />{' '}
+						<input
+							type='checkbox'
+							className=' hidden'
+							{...register('saving')}
+						/>{' '}
 						<div className='auth_checkbox'>
 							<FontAwesomeIcon icon={faCheck} />
 						</div>{' '}

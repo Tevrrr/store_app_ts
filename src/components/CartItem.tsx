@@ -22,9 +22,8 @@ const CartItem: FC<CartItemProps> = ({ data }) => {
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         setLoading(true);
-        
 		featchCart();
-	}, [data]);
+	}, []);
     const featchCart = async () => {
 		const { data: product } = await supabase
 			.from('product')
@@ -62,11 +61,10 @@ const CartItem: FC<CartItemProps> = ({ data }) => {
 							<FontAwesomeIcon icon={faCaretUp} />
 						</button>
 						{data.quantity}
-						<button className=' w-8 h-8 cartItem_btn'>
-							<FontAwesomeIcon
-								icon={faCaretDown}
-								onClick={() => decrementCartItem(data.id)}
-							/>
+						<button
+							className=' w-8 h-8 cartItem_btn'
+							onClick={() => {if(data.quantity>1)  decrementCartItem(data.id)}}>
+							<FontAwesomeIcon icon={faCaretDown} />
 						</button>
 					</div>
 					<div className='min-w-[5rem] w-20 flex justify-center'>

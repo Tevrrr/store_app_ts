@@ -11,7 +11,12 @@ import { supabase } from '../supabase/supabaseClient'
 interface CartProps {}
 
 const Cart: FC<CartProps> = () => {
-	const product = useTypedSelector((state) => state.product);
+    const product = useTypedSelector((state) => state.product);
+    const totalAmount = (): number => {
+        let sum:number = 0;
+        product.cart.forEach((item) => { sum += item.quantity })
+        return sum;
+    }
 	return (
 		<div className='flex flex-col gap-4 pt-4'>
 			<div className='flex  pr-16 p-3 rounded-3xl text-cyan-50 text-xl font-medium dark:bg-cyan-800 bg-cyan-700'>
@@ -24,7 +29,7 @@ const Cart: FC<CartProps> = () => {
 			))}
 			<div className='flex gap-4 p-3 rounded-3xl text-cyan-50 text-xl font-medium bg-cyan-700 dark:bg-cyan-800'>
 				<div className='grow'>Total price: </div>
-				<div className=' w-20 flex justify-center'>20$</div>
+				<div className=' w-20 flex justify-center'>{totalAmount()}$</div>
 			</div>
 		</div>
 	);

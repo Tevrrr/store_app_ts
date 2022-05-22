@@ -7,8 +7,8 @@ import {
 } from '../../common/types/user';
 
 const initialState: UserState = {
-    darkMode: false,
-    user: null
+	darkMode: false,
+	user: null,
 };
 
 export const userReducer = (
@@ -20,10 +20,14 @@ export const userReducer = (
 			localStorage.setItem('darkMode', JSON.stringify(!state.darkMode));
 			return { ...state, darkMode: !state.darkMode };
 		}
-        case UserActionTypes.SET_STORAGE_DARK_MODE:
-            const darkMode = localStorage.getItem('darkMode')
-            if (darkMode) return { ...state, darkMode: JSON.parse(darkMode) };
+		case UserActionTypes.SET_STORAGE_DARK_MODE: {
+			const darkMode = localStorage.getItem('darkMode');
+			if (darkMode) return { ...state, darkMode: JSON.parse(darkMode) };
 			return { ...state, darkMode: false };
+		}
+		case UserActionTypes.LOGIN_USER: {
+			return { ...state, user: action.payload };
+		}
 		default:
 			return state;
 	}

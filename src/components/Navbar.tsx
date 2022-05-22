@@ -13,12 +13,11 @@ import {
 import { useTypedSelector } from '../common/hooks/useTypedSelector';
 import { useActions } from '../common/hooks/useActions';
 import { Link } from 'react-router-dom';
-import {supabase} from '../supabase/supabaseClient'
 
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
-	const { darkMode } = useTypedSelector((state) => state.user);
+	const { user, darkMode } = useTypedSelector((state) => state.user);
     const { toggleDarkMode } = useActions();
     
 	return (
@@ -48,7 +47,7 @@ const Navbar: FC<NavbarProps> = () => {
 			<div className='flex items-center flex-row-reverse gap-1'>
 				{' '}
 				<div className='hover:text-cyan-200 cursor-pointer p-2'>
-					{false ? (
+					{user ? (
 						<div className=' transition-all hover:text-red-200'>
 							<FontAwesomeIcon icon={faRightFromBracket} />
 						</div>

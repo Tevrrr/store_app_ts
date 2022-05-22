@@ -3,16 +3,33 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { useActions } from '../common/hooks/useActions';
 
 interface SignUpProps {}
 
 const SignUp: FC<SignUpProps> = () => {
-    const EMAIL_REGEXP =
+	const EMAIL_REGEXP =
 		/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-    const { register, handleSubmit, watch, formState: {errors}  } = useForm({ defaultValues: { fullName: '', email: '', password: '', passwordRepeat: ''}})
+	const {
+		register,
+		handleSubmit,
+		watch,
+		formState: { errors },
+	} = useForm({
+		defaultValues: {
+			fullName: '',
+			email: '',
+			password: '',
+			passwordRepeat: '',
+		},
+	});
+	const { registerUser } = useActions();
 	return (
 		<form
-			onSubmit={handleSubmit((data) => console.log(data))}
+			onSubmit={handleSubmit((data) => {
+				console.log(data);
+				registerUser(data.email, data.password);
+			})}
 			className=' w-full h-full flex justify-center items-start pt-3 '>
 			<div className=' max-w-sm w-full flex flex-col gap-5 bg-cyan-700 dark:bg-cyan-800 p-6 px-10 rounded-3xl text-cyan-50 '>
 				<h1 className='text-center text-4xl font-bold uppercase'>
