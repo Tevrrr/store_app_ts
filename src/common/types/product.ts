@@ -24,6 +24,7 @@ export enum ProductActionTypes {
 	SET_LOADING = 'SET_LOADING',
 	ADD_CART = 'ADD_CART',
 	DEL_CART = 'DEL_CART',
+	EMPTY_CART = 'EMPTY_CART',
 	INCREMENT_CART = 'INCREMENT_CART',
 	DECREMENT_CART = 'DECREMENT_CART',
 }
@@ -45,6 +46,10 @@ interface itemCart {
 	payload: string;
 }
 
+interface emptyCart {
+    type: ProductActionTypes.EMPTY_CART;
+}
 
 
-export type ProductAction = setProduct | setLoading | itemCart;
+
+export type ProductAction = setProduct | setLoading | itemCart | emptyCart;

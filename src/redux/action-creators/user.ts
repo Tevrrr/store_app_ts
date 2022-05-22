@@ -16,7 +16,11 @@ export const setStorageDarkMode = () => {
 	};
 };
 
-export const registerUser = (email: string, password: string, fullName:string) => {
+export const registerUser = (
+	email: string,
+	password: string,
+	fullName: string
+) => {
 	return async () => {
 		try {
 			const { user, error } = await supabase.auth.signUp({
@@ -63,10 +67,16 @@ export const loginStorage = () => {
 					password,
 				});
 				if (error) throw error;
-				if (user)
+				let { data: fullName, error: error_ } = await supabase
+					.from('user')
+					.select('fullName')
+					.eq('userUID', user?.id);
+				if (error) throw error_;
+
+				if (user && fullName)
 					dispatch({
 						type: UserActionTypes.LOGIN_USER,
-						payload: user,
+						payload: { user: user, fullName: fullName[0].fullName },
 					});
 			} catch (e: any) {
 				console.log(e);
@@ -87,8 +97,17 @@ export const login = (email: string, password: string, saving: boolean) => {
 			if (error) throw error;
 			console.log(user);
 
-			if (user)
-				dispatch({ type: UserActionTypes.LOGIN_USER, payload: user });
+			let { data: fullName, error: error_ } = await supabase
+				.from('user')
+				.select('fullName')
+				.eq('userUID', user?.id);
+			if (error) throw error_;
+
+			if (user && fullName)
+				dispatch({
+					type: UserActionTypes.LOGIN_USER,
+					payload: { user: user, fullName: fullName[0].fullName },
+				});
 			if (saving) {
 				localStorage.setItem(
 					'user',
@@ -110,8 +129,26 @@ export const login = (email: string, password: string, saving: boolean) => {
 
 export const exitUser = () => {
 	return async (dispatch: Dispatch<UserAction>) => {
-        dispatch({ type: UserActionTypes.EXIT_USER });
-        sessionStorage.removeItem('user');
-        localStorage.removeItem('user');
+		dispatch({ type: UserActionTypes.EXIT_USER });
+		sessionStorage.removeItem('user');
+		localStorage.removeItem('user');
+	};
+};
+
+export const sendOrderForm = (
+	name: string,
+	phoneNumber: string,
+	address: string,
+	products: string
+) => {
+	return async () => {
+		try {
+			const { error } = await supabase
+				.from('orders')
+				.insert([{ name, phoneNumber, address, products }]);
+			if (error) throw error;
+		} catch (e) {
+			console.log(e);
+		}
 	};
 };

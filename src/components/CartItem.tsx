@@ -21,7 +21,7 @@ const CartItem: FC<CartItemProps> = ({ product, quantity }) => {
 	return (
 		<div className='min-h-[96px] flex items-center  p-3 rounded-3xl text-cyan-900 dark:text-cyan-50  hover:bg-cyan-700 hover:bg-opacity-20 text-xl font-medium '>
 			<>
-				<div className='grow flex items-center'>
+				<div className='grow flex gap-2 items-center'>
 					{' '}
 					<img src='' alt='' />
 					<img
@@ -43,6 +43,7 @@ const CartItem: FC<CartItemProps> = ({ product, quantity }) => {
 					{quantity}
 					<button
 						className=' w-8 h-8 cartItem_btn'
+						disabled={quantity === 1}
 						onClick={() => {
 							if (quantity > 1) decrementCartItem(product.id);
 						}}>

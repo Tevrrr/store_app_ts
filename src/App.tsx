@@ -10,6 +10,7 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 import { useActions } from './common/hooks/useActions';
 import { useEffect } from 'react';
 import User from './pages/User';
+import OrderForm from './pages/OrderForm';
 
 function App() {
 	const { darkMode, user } = useTypedSelector((store) => store.user);
@@ -42,7 +43,22 @@ function App() {
 						<Route path='cart' element={<Cart />} />
 						<Route path='login' element={<Login />} />
 						<Route path='signup' element={<SignUp />} />
-						<Route path='user' element={<RequireAuth><User /></RequireAuth>} />
+						<Route
+							path='user'
+							element={
+								<RequireAuth>
+									<User />
+								</RequireAuth>
+							}
+						/>
+						<Route
+							path='cart/orderform'
+							element={
+								<RequireAuth>
+									<OrderForm />
+								</RequireAuth>
+							}
+						/>
 					</Routes>
 				</div>
 			</div>

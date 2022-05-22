@@ -8,10 +8,11 @@ interface MainProps {}
 
 const Main: FC<MainProps> = () => {
 	return (
-		<div className='flex gap-2 h-full pt-2'>
-            <Aside />
-            <div className=' grow'><Catalog /></div>
-			
+		<div className=' relative flex gap-2 h-full pt-2'>
+				<Aside />
+			<div className=' grow'>
+				<Catalog />
+			</div>
 		</div>
 	);
 };

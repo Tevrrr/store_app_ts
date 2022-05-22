@@ -8,51 +8,9 @@ import {
 import { featchProducts } from '../action-creators/product';
 
 const initialState: ProductState = {
-	// products: [
-	// 	{
-	// 		title: 'Beef Meat',
-	// 		description: 'string',
-	// 		price: 5,
-	// 		id: '1',
-	// 		imgName: 'food-packaging-psd-mockup_336574-6.jpg',
-	// 		tag: 'Meat',
-	// 	},
-	// 	{
-	// 		title: 'Qualiti Meat',
-	// 		description: 'string',
-	// 		price: 7,
-	// 		id: '2',
-	// 		imgName: 'frozen-meat-tray-box-packaging-mockup_439185-7826.jpg',
-	// 		tag: 'Meat',
-	// 	},
-	// 	{
-	// 		title: 'Meat',
-	// 		description: 'string',
-	// 		price: 7.5,
-	// 		id: '3',
-	// 		imgName: 'meat-tray-box-packaging-mockup_439185-7842.jpg',
-	// 		tag: 'Meat',
-	// 	},
-	// 	{
-	// 		title: 'Tray Meat',
-	// 		description: 'string',
-	// 		price: 5.25,
-	// 		id: '4',
-	// 		imgName: 'meat-tray-packaging-mockup-template_1051-3218.jpg',
-	// 		tag: 'Meat',
-	// 	},
-	// 	{
-	// 		title: 'Farmland Meat',
-	// 		description: 'string',
-	// 		price: 3,
-	// 		id: '5',
-	// 		imgName: 'raw-meat-tray-box-packaging-mockup_47987-4553.jpg',
-	// 		tag: 'Meat',
-	// 	},
-	// ],
-    loading: false,
+	loading: false,
 	products: [],
-	cart: []
+	cart: [],
 };
 
 export const productReducer = (
@@ -65,6 +23,11 @@ export const productReducer = (
 				...state,
 				products: action.payload,
 				loading: false,
+			};
+		case ProductActionTypes.EMPTY_CART:
+			return {
+				...state,
+				cart:[],
 			};
 		case ProductActionTypes.SET_LOADING:
 			return { ...state, loading: action.payload };

@@ -17,6 +17,14 @@ export const featchProducts = (tag: string) => {
 	};
 };
 
+export const emptyCartItem = () => {
+	return (dispatch: Dispatch<ProductAction>) => {
+		dispatch({
+			type: ProductActionTypes.EMPTY_CART
+		});
+	};
+};
+
 export const addCartItem = (id: string) => {
 	return (dispatch: Dispatch<ProductAction>) => {
 		dispatch({

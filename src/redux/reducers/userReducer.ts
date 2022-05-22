@@ -8,7 +8,8 @@ import {
 
 const initialState: UserState = {
 	darkMode: false,
-	user: null,
+    user: null,
+    fullName: '',
 };
 
 export const userReducer = (
@@ -29,7 +30,7 @@ export const userReducer = (
 			return { ...state, user: null };
 		}
 		case UserActionTypes.LOGIN_USER: {
-			return { ...state, user: action.payload };
+			return { ...state,  ...action.payload };
 		}
 		default:
 			return state;

@@ -1,7 +1,8 @@
 import { User} from '@supabase/supabase-js'
 export interface UserState {
 	darkMode: boolean;
-	user: User|null;
+    user: User | null;
+    fullName: string;
 }
 export enum UserActionTypes {
 	TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE',
@@ -20,7 +21,7 @@ interface setStorageDarkMode {
 }
 interface loginUser {
 	type: UserActionTypes.LOGIN_USER;
-	payload: User;
+	payload: { user: User; fullName: string };
 }
 
 export type UserAction = toggleDarkMode | setStorageDarkMode | loginUser | exitUser;
