@@ -11,7 +11,6 @@ export const featchProducts = (tag: string) => {
 			payload: true,
 		});
         const { data } = await supabase.from('product').select('*').eq('tag', tag);
-        console.log(tag, ' - Загрузка - ', Date());
         
 		dispatch({ type: ProductActionTypes.SET_PRODUCT, payload: data || [] });
 	};

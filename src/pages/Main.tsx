@@ -8,7 +8,7 @@ interface MainProps {}
 
 const Main: FC<MainProps> = () => {
 	return (
-		<div className=' relative flex gap-2 h-full pt-2'>
+		<div className='flex gap-2 h-full pt-2'>
 				<Aside />
 			<div className=' grow'>
 				<Catalog />

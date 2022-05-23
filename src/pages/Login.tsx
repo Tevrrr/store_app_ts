@@ -1,7 +1,7 @@
 /** @format */
 
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -13,15 +13,14 @@ const Login: FC<LoginProps> = () => {
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm({ defaultValues: { email: '', password: '', saving: '' } });
-	const { login } = useActions();
+    const { login } = useActions();
+    const navigate = useNavigate();
 	return (
 		<form
 			onSubmit={handleSubmit((data) => {
-				console.log(data);
-				login(data.email, data.password, data.saving === 'true');
+				login(data.email, data.password, data.saving === 'true', (access)=>{if(access)navigate('/');});
 			})}
 			className=' w-full h-full flex justify-center items-start pt-10 '>
 			<div className=' max-w-sm w-full flex flex-col gap-5 bg-cyan-700 dark:bg-cyan-800 p-6 px-10 rounded-3xl text-cyan-50 '>

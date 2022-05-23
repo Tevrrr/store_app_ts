@@ -48,8 +48,8 @@ const Cart: FC<CartProps> = () => {
 	) : (
 		<>
 			{cart.length ? (
-				<div className='flex flex-col gap-4 pt-4'>
-					<div className='flex pr-16 p-3 rounded-3xl text-cyan-50 text-xl font-medium dark:bg-cyan-800 bg-cyan-700'>
+				<div className='flex flex-col gap-4 pt-4 pb-14'>
+					<div className=' hidden sm:flex pr-16 p-3 rounded-3xl text-cyan-50 text-xl font-medium dark:bg-cyan-800 bg-cyan-700'>
 						<div className='grow'>Name</div>
 						<div className=' w-20 flex justify-center'>
 							Quantity
@@ -63,14 +63,14 @@ const Cart: FC<CartProps> = () => {
 							key={item.id}
 						/>
 					))}
-					<div className=' overflow-hidden flex gap-2 pr-[3.75rem] rounded-3xl text-cyan-50 text-xl font-medium bg-cyan-700 dark:bg-cyan-800'>
+					<div className=' z-20 fixed bottom-2 left-1 right-1 sm:static overflow-hidden flex gap-2 pr-0 sm:pr-[3.75rem] rounded-3xl text-cyan-50 text-xl font-medium bg-cyan-700 dark:bg-cyan-800'>
 						<div className='grow'>
 							<Link
 								to={'orderform'}
 								className='inline-block py-3 px-5 rounded-3xl bg-cyan-800 dark:bg-cyan-900 hover:pr-10 font-medium'>
 								Place an order
 							</Link>
-						</div>
+                            </div>
 						<div className='py-3 whitespace-nowrap'>
 							Total price:{' '}
 						</div>

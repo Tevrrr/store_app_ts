@@ -11,6 +11,7 @@ import { useActions } from './common/hooks/useActions';
 import { useEffect } from 'react';
 import User from './pages/User';
 import OrderForm from './pages/OrderForm';
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
 	const { darkMode, user } = useTypedSelector((store) => store.user);
@@ -26,13 +27,12 @@ function App() {
 		let location = useLocation();
 
 		if (user === null) {
-			console.log('Available only for authorized users! ');
+			toast.error('Available only for authorized users! ');
 			return <Navigate to='/login' state={{ from: location }} replace />;
 		}
 
 		return children;
 	}
-
 	return (
 		<div className={darkMode ? 'dark' : ''}>
 			<div className='App bg-gray-100 dark:bg-gray-900 w-full flex justify-center'>
@@ -60,6 +60,9 @@ function App() {
 							}
 						/>
 					</Routes>
+					<div>
+						<Toaster position='bottom-center' />
+					</div>
 				</div>
 			</div>
 		</div>
