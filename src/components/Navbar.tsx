@@ -22,7 +22,7 @@ const Navbar: FC<NavbarProps> = () => {
 	const { toggleDarkMode } = useActions();
 
 	return (
-		<nav className=' w-full sm:static  h-full max-h-[4.5rem] shadow-lg overflow-hidden flex justify-between items-center py-2 px-4 bg-cyan-700  dark:bg-cyan-800 text-cyan-50 border-2 border-cyan-900 rounded-3xl text-3xl font-medium '>
+		<nav className=' w-full sm:static  h-full max-h-[4.5rem] shadow-lg overflow-hidden flex justify-between items-center py-2 px-2 sm:px-4 bg-cyan-700  dark:bg-cyan-800 text-cyan-50 border-2 border-cyan-900 rounded-3xl text-3xl font-medium '>
 			<div className=' flex items-center'>
 				<button
 					className='hover:text-cyan-200 cursor-pointer p-2'
@@ -42,7 +42,11 @@ const Navbar: FC<NavbarProps> = () => {
 				to='/'
 				className='hover:text-cyan-200 text-3xl font-bold cursor-pointer flex items-center gap-2'>
 				<FontAwesomeIcon icon={faMoneyBillWheat} />
-				FoodStore
+				<p className=' hidden sm:block'>FoodStore</p>
+				<div className=' sm:hidden flex flex-col items-center justify-center text-xl leading-4'>
+					<p className=' '>Food</p>
+					<p className=''>Store</p>
+				</div>
 			</Link>
 
 			<div className='flex items-center flex-row-reverse gap-1'>
