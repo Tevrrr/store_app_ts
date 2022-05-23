@@ -44,8 +44,8 @@ const Navbar: FC<NavbarProps> = () => {
 				<FontAwesomeIcon icon={faMoneyBillWheat} />
 				<p className=' hidden sm:block'>FoodStore</p>
 				<div className=' sm:hidden flex flex-col items-center justify-center text-xl leading-4'>
-					<p className=' '>Food</p>
-					<p className=''>Store</p>
+					<p>Food</p>
+					<p>Store</p>
 				</div>
 			</Link>
 
